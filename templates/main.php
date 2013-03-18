@@ -1,11 +1,6 @@
 <?php //echo $l->t('Some Setting').': "'. $_['somesetting'] . '"'; ?>
 <?php
-$info = pathinfo(__FILE__);
-$dir_info = pathinfo($info["dirname"]);
-$app_dir = $dir_info["dirname"];
-define("APP_PATH", $app_dir);
-//define("LOGS_PATH",getcwd()."/apps2/np/lib/logs/");
-define("LOGS_PATH",$app_dir."/lib/logs");
+
 function json_readable_encode($in, $indent = 0, $from_array = false){
 	return foo($in, 0, $indent, " ",$from_array = false);
 }
@@ -65,7 +60,7 @@ function foo($in, $indent, $indent_increment, $indent_str, $from_array)
 
 function get_group_manager_logs($current_user, $group){
 	$result = "";
-	$dir = LOGS_PATH ."/".$group;
+	$dir = OC_np_helper_functions::$logs_path ."/".$group;
 	$files = scandir($dir);
 	//print_r($files);
 	foreach($files as $i => $file){
@@ -82,7 +77,7 @@ function get_group_manager_logs($current_user, $group){
 }
 
 function get_admin_logs($current_user){
-	$dir = LOGS_PATH;
+	$dir = OC_np_helper_functions::$logs_path;
 	$groups_folders = scandir($dir);
 	$result = "";
 	foreach($groups_folders as $i => $folder){
@@ -98,7 +93,7 @@ function get_admin_logs($current_user){
 }
 
 function get_user_logs($current_user, $group){
-	$file_name = LOGS_PATH."/".$group."/".$current_user.".txt";
+	$file_name = OC_np_helper_functions::$logs_path."/".$group."/".$current_user.".txt";
 	$f = fopen($file_name,"r") or die("a problem occured $group $current_user $action");
 	$str = fread($f,filesize($file_name));
 	$json = '['.str_replace("\n", ",\n\n", $str).'""]';
