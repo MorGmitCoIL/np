@@ -15,5 +15,3 @@ Installation:
 TODO:
 	1. use routed instead of things like 'getcwd()."apps2' ... 
 	3. make autocad ws username and password configurable instead of static, so every group will have a username and a password
-	
-	
