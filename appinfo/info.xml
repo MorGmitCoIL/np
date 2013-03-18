@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<info>
+	<id>np</id>
+	<name>GmitOwncloudApp</name>
+	<description>np</description>
+	<version>1.0</version>
+	<licence>AGPL</licence>
+	<author>np</author>
+	<require>4</require>
+</info>
