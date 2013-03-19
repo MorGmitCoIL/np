@@ -94,6 +94,9 @@ function get_admin_logs($current_user){
 
 function get_user_logs($current_user, $group){
 	$file_name = OC_np_helper_functions::$logs_path."/".$group."/".$current_user.".txt";
+	if(!file_exists($file_name)):
+		return "";
+	endif;
 	$f = fopen($file_name,"r") or die("a problem occured $group $current_user $action");
 	$str = fread($f,filesize($file_name));
 	$json = '['.str_replace("\n", ",\n\n", $str).'""]';
@@ -102,16 +105,15 @@ function get_user_logs($current_user, $group){
 }
 function get_logs(){
 	$user_tmp = OC_User::getUser();
-	if(!OC_Group::inGroup($user_tmp, "admin")):
-		$groups_tmp = OC_Group::getUserGroups($user_tmp);
-		//print_r($groups_tmp);
-		if(!OC_SubAdmin::isSubAdminOfGroup($user_tmp, $groups_tmp[0])){
-			return get_group_manager_logs($user_tmp,$groups_tmp[0]);
-		}
-		return get_user_logs($user_tmp,$groups_tmp[0]);
-	else:
+	if(OC_Group::inGroup($user_tmp, "admin")):
 		return get_admin_logs($user_tmp);
 	endif;
+	$groups_tmp = OC_Group::getUserGroups($user_tmp);
+	//print_r($groups_tmp);
+	if(OC_SubAdmin::isSubAdminOfGroup($user_tmp, $groups_tmp[0])){
+		return get_group_manager_logs($user_tmp,$groups_tmp[0]);
+	}
+	return get_user_logs($user_tmp,$groups_tmp[0]);
 }
 echo '<pre>'.get_logs().'</pre>';
 ?>
