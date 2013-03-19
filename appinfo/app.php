@@ -2,6 +2,7 @@
 
 OC::$CLASSPATH['OC_np_Hooks'] = 'np/lib/hooks.php';
 OC::$CLASSPATH['OC_np_helper_functions'] = 'np/lib/helper_functions.php';
+OC::$CLASSPATH['OC_np_file_data'] = 'np/lib/fileData.php';
 $actions = array('post_create', 'post_rename', 'post_delete', 'post_copy', 'post_write', 'read');
 foreach($actions as $i => $a){
 	OC_HOOK::connect('OC_Filesystem', $a, 'OC_np_Hooks', 'logUserAction'.'_'.$a);

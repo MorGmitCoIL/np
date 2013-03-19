@@ -115,5 +115,14 @@ function get_logs(){
 	}
 	return get_user_logs($user_tmp,$groups_tmp[0]);
 }
+//OC_np_file_data::addRow(__FILE__, '{"just":"testing"}');
+//echo "\n";
+//$a=OC_np_file_data::testDb();
+//print_r($a);
+//echo '<pre>';
+//foreach ($a as $k => $v){
+//	echo $v["json_file_data"]."  ".$v["file_path"]."\n";
+//}
+//echo '</pre>';
 echo '<pre>'.get_logs().'</pre>';
 ?>
