@@ -1,0 +1,7 @@
+"\/.*\\.png$\/" ... "Diary.png"Y"\/.*\\.png$\/" ... "Footer.jpg""" ... "Footer.jpg"N / / Footer.jpg Y
+"\/.*\\.png$\/" ... "File.png"Y"\/.*\\.png$\/" ... "Footer.jpg""" ... "Footer.jpg"N / / Footer.jpg Y
+"\/.*\\.png$\/" ... "hi""" ... "hi"N / / hi Y
+"\/.*\\.png$\/" ... "Small Management Grey.png"Y"\/.*\\.png$\/" ... "a""\/^[^.]*$\/" ... "a"Y"\/.*\\.png$\/" ... "Footer.jpg""\/^[^.]*$\/" ... "Footer.jpg""" ... "Footer.jpg"N / / Footer.jpg Y
+YN / / Footer.jpg Y
+YYN / / sssss Y
+Y

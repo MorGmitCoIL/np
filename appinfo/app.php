@@ -7,6 +7,7 @@ $actions = array('post_create', 'post_rename', 'post_delete', 'post_copy', 'post
 foreach($actions as $i => $a){
 	OC_HOOK::connect('OC_Filesystem', $a, 'OC_np_Hooks', 'logUserAction'.'_'.$a);
 }
+OC_HOOK::connect('OC_Filesystem', 'post_create', 'OC_np_Hooks', 'delete_if_not_in_white_list_hook');
 //OC_HOOK::connect('OC_Filesystem', "post_create", 'OC_np_Hooks', 'logUserAction');
 OCP\Util::addscript( 'np', 'np_js' );
 OCP\Util::addscript( 'np', 'webdavClient' );
