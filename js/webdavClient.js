@@ -70,7 +70,6 @@ WebdavClient.prototype.createRequest = function(handler, method, path)
 			}
 		}
     };
-	
     //concatenate the relative path to the server url to receive the full URL.
 	var url = encodeURI(this.url + path);
 	

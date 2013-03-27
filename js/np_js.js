@@ -82,17 +82,17 @@ $(document).ready(function () {
     }
     function server2server(remoteServerClient, handler, remoteServerPath, owncloudServerPath) {
 	var request = new XMLHttpRequest();
-	request.onreadystatechange = function() {
+	request.onreadystatechange = function() {  
     	//readystate 4 means that request finished and response is ready
     		if (request.readyState === 4) {
-                    (function () {			
+                    (function () {
     		        var contentType = request.getResponseHeader("content-type"),
                             content = request.responseText;
 			log(request);
 			module_alert("Starting Autoncad WS..\n" + "The file will be opened for viewing purposes only. Changes will not be saved");
     		        //status code 2xx means request is successfull
 			if ((request.status >= 200) && (request.status < 300)) {
-                                log("here2");
+                                log("here22222222222222222222222222222222222");
 				remoteServerClient.PUT(handler, remoteServerPath, content, contentType, content.length);
 			}
 			else {
@@ -117,7 +117,7 @@ $(document).ready(function () {
             contentType = "application/dxf",
             content = null,
             putHandler = {
-                onSuccess: function (r) {log("upload complete"); log(r); that.client.OpenDrawing(that.config, '/' + filename);},
+                onSuccess: function (r) {log("upload complete"); log(r); log("here3333333333333333333333333333333333333333"); that.client.OpenDrawing(that.config, '/' + filename);},
                 onError: function (r) {log(r); }
             };
         log(path);
