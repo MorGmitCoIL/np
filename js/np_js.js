@@ -186,6 +186,8 @@ $(document).ready(function () {
             FileActions.setDefault(mime, formats[mime]);
         });
 
+	//fileMetadata();
+ 
     }
 
 });

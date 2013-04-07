@@ -14,6 +14,7 @@ OCP\Util::addscript( 'np', 'webdavClient' );
 OCP\Util::addscript( 'np', 'webdavManager' );
 OCP\Util::addscript( 'np', 'Base64' );
 OCP\Util::addscript( 'np', 'utils' );
+OCP\Util::addscript( 'np', 'fileMetadata' );
 OCP\App::registerAdmin( 'np', 'settings' );
 
 OCP\App::addNavigationEntry( array( 
