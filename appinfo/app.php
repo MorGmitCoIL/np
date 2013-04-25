@@ -8,8 +8,11 @@ foreach($actions as $i => $a){
 	OC_HOOK::connect('OC_Filesystem', $a, 'OC_np_Hooks', 'logUserAction'.'_'.$a);
 }
 OC_HOOK::connect('OC_Filesystem', 'post_create', 'OC_np_Hooks', 'delete_if_not_in_white_list_hook');
+OC_HOOK::connect('OC_Filesystem', 'post_rename', 'OC_np_Hooks', 'clear_rename');
 //OC_HOOK::connect('OC_Filesystem', "post_create", 'OC_np_Hooks', 'logUserAction');
+OCP\Util::addscript( 'np', 'npPlugins');
 OCP\Util::addscript( 'np', 'np_js' );
+OCP\Util::addscript( 'np', 'np_users_page' );
 OCP\Util::addscript( 'np', 'webdavClient' );
 OCP\Util::addscript( 'np', 'webdavManager' );
 OCP\Util::addscript( 'np', 'Base64' );

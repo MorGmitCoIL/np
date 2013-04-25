@@ -44,7 +44,13 @@ class OC_np_Hooks{
 	// checks foe regexes in the white list lines. if instead of regex the line is "directories" then checks if the file is a directory
 	// a line starting with # is a comment
 	static public function is_whitelisted($dir_in_owncloud,$filename){
+		
 		$white_list_regexes = OC_np_helper_functions::get_lines($dir_in_owncloud,"white_list.txt");
+		$white_list_regexes = $white_list_regexes ? $white_list_regexes : OC_np_helper_functions::get_lines($dir_in_owncloud,"whiteList.txt");
+		$white_list_regexes = $white_list_regexes ? $white_list_regexes : OC_np_helper_functions::get_lines($dir_in_owncloud,"whitelist.txt");
+		$white_list_regexes = $white_list_regexes ? $white_list_regexes : OC_np_helper_functions::get_lines($dir_in_owncloud,".whiteList");
+		$white_list_regexes = $white_list_regexes ? $white_list_regexes : OC_np_helper_functions::get_lines($dir_in_owncloud,".whitelist");
+		$white_list_regexes = $white_list_regexes ? $white_list_regexes : OC_np_helper_functions::get_lines($dir_in_owncloud,".white_list");
                 if(!$white_list_regexes):
 			return true;
 		endif;
@@ -57,7 +63,8 @@ class OC_np_Hooks{
 				return true;
 			endif;
 		}
-		return false;
+                return false;
+                
 	}
 
 	//TODO: when a file is uploaded, it is first shown as if uploaded successfully, even if it was deleted. fix this.
@@ -74,11 +81,12 @@ class OC_np_Hooks{
 		//die(json_encode(array()));
 		
 		if(OC_np_Hooks::is_whitelisted($dir_in_owncloud,$filename)):
-			OC_np_Hooks::logThis("Y");
+			OC_np_Hooks::logThis("whitelisted\n");
 			//return "kept file: $filename";
-		else:  OC_np_Hooks::logThis("N");
-			$r = OC_Files::delete($dir_in_owncloud,$filename);
-			OC_np_Hooks::logThis(" $dir_in_owncloud / $filename ".($r ? "Y" :"N")."\n");
+		else:  
+			OC_np_Hooks::logThis("not whitelisted\n");
+			$r = \OC\Files\Filesystem::unlink($dir_in_owncloud . '/' . $filename);//delete
+			OC_np_Hooks::logThis(" $dir_in_owncloud / $filename ".($r ? "deleted" :"did not delete")."\n");
 			//return "deleted file: $filename";
 		endif;
 	}
@@ -86,6 +94,15 @@ class OC_np_Hooks{
 		$f = fopen(OC_np_helper_functions::$logs_path."/log.txt","a+") or die("?");
 		fwrite($f,$str);
 		fclose($f);
+	}
+	static public function clear_rename($params) {
+		$oldpath = $params["oldpath"]; //$oldpath, $newpath, $run
+
+		if (!\OC\Files\Filesystem::unlink($file.'/'.$oldpath)) {
+			$filesWithError .= $file . "\n";
+			$success = false;
+		}
+//OC_FileCache::clean();
 	}
 	//static public function logUserAction_test($path){ return true;}
 }

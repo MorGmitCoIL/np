@@ -27,7 +27,8 @@
 
 OCP\User::checkLoggedIn();
 
-
+OCP\Util::addScript('np', 'logs');
+OCP\Util::addScript('np', 'logs_2');
 $somesetting = OCP\Config::getSystemValue( "somesetting", '' );
 OCP\App::setActiveNavigationEntry( 'np' );
 $tmpl = new OCP\Template( 'np', 'main', 'user' );

@@ -1,9 +1,16 @@
 /*jslint browser: true*/
 /*global $, jQuery, OC, alert,  open, console, WebdavClient, fileDownloadPath*/
 var FileActions;
+function showAllFiles(){
+	$('#fileList tr').show();
+}
+function hideHiddenFiles(){
+	$("#fileList tr[data-file^=\'.\']").hide();
+}
 $(document).ready(function () {
     'use strict';
-	 
+     hideHiddenFiles();
+     $("title").text("GMITcloud");
      var gmit_css = false,
 	     formats,
          mime,

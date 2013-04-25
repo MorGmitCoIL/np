@@ -1,1 +1,3 @@
-ajax/get_username_password.php
+ajax/autocadWSdata/*
+lib/logs/*
+lib/previous_logs/*
